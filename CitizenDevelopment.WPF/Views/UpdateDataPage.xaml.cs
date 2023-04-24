@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CitizenDevelopment.WPF.Models;
+using CitizenDevelopment.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,22 @@ namespace CitizenDevelopment.WPF.Views
     /// <summary>
     /// Interaction logic for Update.xaml
     /// </summary>
-    public partial class Update : Page
+    public partial class UpdateDataPage : Page
     {
-        public Update()
+        public UpdateDataPage(DataModel updatingData)
         {
             InitializeComponent();
+            DataContext = new UpdateDataVm(updatingData);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

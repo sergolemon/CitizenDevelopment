@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CitizenDevelopment.WPF.Models;
+using CitizenDevelopment.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,20 @@ namespace CitizenDevelopment.WPF.Views
         public DataListPage()
         {
             InitializeComponent();
+            DataContext = new DataListVm();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CreateDataPage());
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //update
+            var itemId = (int)((Button)sender).DataContext;
+            var item = ((DataListVm)DataContext).Data.FirstOrDefault(x => x.Id == itemId);
+            NavigationService.Navigate(new UpdateDataPage(item));
         }
     }
 }

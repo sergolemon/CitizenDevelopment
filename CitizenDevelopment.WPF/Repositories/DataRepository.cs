@@ -25,6 +25,25 @@ namespace CitizenDevelopment.WPF.Repositories
             CreateDataTableIfNotExists();
         }
 
+        public async Task<bool> TryRemoveDataAsync(DataModel data)
+        {
+            try
+            {
+                using (var command = new SQLiteCommand(_connection))
+                {
+                    command.CommandText = $@"DELETE FROM data WHERE data_id = {data.Id};";
+                    await command.ExecuteNonQueryAsync();
+
+                    return true;
+                }
+            }
+            catch (Exception exception)
+            {
+                //must have a add record of fatal error to log file
+                return false;
+            }
+        }
+
         public async Task<bool> TryCreateDataAsync(DataModel data)
         {
             try

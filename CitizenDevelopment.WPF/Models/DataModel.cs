@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CitizenDevelopment.WPF.Models
 {
-    internal class DataModel : BaseModel
+    public class DataModel : BaseModel
     {
         int id;
         string applicationName, userName, comment;

@@ -7,6 +7,34 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DataList">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70px" />
+        </Grid.RowDefinitions>
 
-    <Grid/>
+        <ListBox Foreground="White" HorizontalContentAlignment="Stretch" Margin="15" ItemsSource="{Binding Data}" Background="{StaticResource LightDarkBrush}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{StaticResource GreyBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Path=UserName}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Path=ApplicationName}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Path=Comment}" />
+                        <Button Background="{StaticResource YellowBrush}" Grid.Column="3" Content="Update" DataContext="{Binding Path=Id}" Click="Button_Click_2" />
+                        <Button Foreground="White" Background="{StaticResource RedBrush}" Grid.Column="4" Content="Delete" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Button Style="{StaticResource BottomBaseButton}" Foreground="White" Background="{StaticResource OrangeBrush}" HorizontalAlignment="Right" Content="Add data" Click="Button_Click"></Button>
+    </Grid>
 </Page>
