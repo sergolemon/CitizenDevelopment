@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CitizenDevelopment.WPF.Repositories;
+using CitizenDevelopment.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +13,22 @@ namespace CitizenDevelopment.WPF.Commands.Data
     {
         public event EventHandler CanExecuteChanged;
 
+        private readonly UpdateDataVm _vm;
+
+        public UpdateData(UpdateDataVm vm)
+        {
+            _vm = vm;
+        }
+
         public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var repository = new DataRepository();
+            await repository.TryUpdateDataAsync(_vm.Data);
         }
     }
 }

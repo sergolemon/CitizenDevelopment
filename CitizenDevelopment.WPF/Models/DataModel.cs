@@ -11,7 +11,7 @@ namespace CitizenDevelopment.WPF.Models
     public class DataModel : BaseModel
     {
         int id;
-        string applicationName, userName, comment;
+        string applicationName, userName, comment = string.Empty;
 
         public int Id 
         { 

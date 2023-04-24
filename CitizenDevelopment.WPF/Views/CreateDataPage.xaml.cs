@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitizenDevelopment.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace CitizenDevelopment.WPF.Views
         public CreateDataPage()
         {
             InitializeComponent();
-            
+            DataContext = new CreateDataVm();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
