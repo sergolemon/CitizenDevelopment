@@ -13,7 +13,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
 {
     internal class CreateDataVm : BaseViewModel
     {
-        public CreateData CreateCommand { get; }
+        public BaseCommand CreateCommand { get; }
 
         private DataModel data;
 

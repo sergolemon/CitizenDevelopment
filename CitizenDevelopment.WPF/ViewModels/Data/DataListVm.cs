@@ -16,7 +16,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
 {
     public class DataListVm : BaseViewModel
     {
-        public DeleteData DeleteCommand { get; }
+        public BaseCommand DeleteCommand { get; }
 
         public ObservableCollection<DataModel> Data { get; set; }
 

@@ -13,7 +13,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
 {
     internal class UpdateDataVm : BaseViewModel
     {
-        public UpdateData UpdateCommand { get; }
+        public BaseCommand UpdateCommand { get; }
 
         private DataModel data;
 
