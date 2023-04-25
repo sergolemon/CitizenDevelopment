@@ -26,7 +26,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
                 new DataRepository().GetDataListAsync().Result);
 
             DeleteCommand = new DeleteData();
-            DeleteCommand.ExecuteCallback = (result) =>
+            DeleteCommand.ExecuteCallback += (result) =>
             {
                 var parsedResult = (ValueTuple<int, bool>)result;
 

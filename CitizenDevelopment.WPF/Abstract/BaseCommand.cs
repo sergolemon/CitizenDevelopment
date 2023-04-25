@@ -22,13 +22,20 @@ namespace CitizenDevelopment.WPF.Abstract
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public Action<object> ExecuteCallback;
+        public event Action<object> ExecuteCallback;
 
         public bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }
 
-        public abstract void Execute(object parameter);
+        public async void Execute(object parameter) 
+        {
+            var commandResult = await ExecuteCommandAsync(parameter);
+
+            ExecuteCallback?.Invoke(commandResult);
+        }
+
+        protected abstract Task<object> ExecuteCommandAsync(object parameter);
     }
 }

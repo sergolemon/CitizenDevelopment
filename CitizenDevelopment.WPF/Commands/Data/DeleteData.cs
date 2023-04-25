@@ -12,13 +12,13 @@ namespace CitizenDevelopment.WPF.Commands.Data
 {
     public class DeleteData : BaseCommand
     {
-        public override async void Execute(object parameter)
+        protected override async Task<object> ExecuteCommandAsync(object parameter)
         {
             var repository = new DataRepository();
             var itemId = (int)parameter;
             var result = await repository.TryRemoveDataAsync(new Models.DataModel { Id = itemId });
 
-            ExecuteCallback?.Invoke((itemId, result));
+            return (itemId, result);
         }
     }
 }

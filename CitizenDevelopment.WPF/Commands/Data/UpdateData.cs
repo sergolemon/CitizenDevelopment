@@ -20,12 +20,12 @@ namespace CitizenDevelopment.WPF.Commands.Data
             this.data = data;
         }
 
-        public override async void Execute(object parameter)
+        protected override async Task<object> ExecuteCommandAsync(object parameter)
         {
             var repository = new DataRepository();
             var result = await repository.TryUpdateDataAsync(data);
 
-            ExecuteCallback?.Invoke(result);
+            return result;
         }
     }
 }

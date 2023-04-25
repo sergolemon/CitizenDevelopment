@@ -21,7 +21,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
         {
             data = new DataModel();
             CreateCommand = new CreateData(data);
-            CreateCommand.ExecuteCallback = (result) => 
+            CreateCommand.ExecuteCallback += (result) => 
             {
                 if ((bool)result) 
                 { 
