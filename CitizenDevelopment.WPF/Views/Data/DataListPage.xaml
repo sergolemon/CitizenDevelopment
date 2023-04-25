@@ -13,6 +13,8 @@
             <RowDefinition Height="70px" />
         </Grid.RowDefinitions>
 
+        <TextBlock Panel.ZIndex="2" x:Name="Notify" Width="0" Height="auto" Margin="5" Padding="5" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        
         <ListBox Foreground="White" HorizontalContentAlignment="Stretch" Margin="15" ItemsSource="{Binding Data}" Background="{StaticResource LightDarkBrush}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
@@ -26,6 +28,12 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>-->
+                    <!--<Style.Triggers>
+                        <Trigger Property="Focusable" Value="False">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>-->
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
