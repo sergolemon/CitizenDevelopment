@@ -7,6 +7,7 @@
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Margin" Value="15 0 15 0" />
         <Setter Property="Padding" Value="7" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Grid.VerticalAlignment" Value="Center" />
     </Style>
 </ResourceDictionary>

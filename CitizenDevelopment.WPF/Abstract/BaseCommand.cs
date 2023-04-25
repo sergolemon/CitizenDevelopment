@@ -24,7 +24,7 @@ namespace CitizenDevelopment.WPF.Abstract
 
         public event Action<object> ExecuteCallback;
 
-        public bool CanExecute(object parameter)
+        public virtual bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }

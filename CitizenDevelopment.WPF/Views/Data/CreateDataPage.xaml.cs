@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -24,7 +25,45 @@ namespace CitizenDevelopment.WPF.Views.Data
         public CreateDataPage()
         {
             InitializeComponent();
-            DataContext = new CreateDataVm();
+
+            var notify = new TextBlock();
+            notify.Width = 0;
+            notify.TextWrapping = TextWrapping.NoWrap;
+            notify.Height = double.NaN;
+            notify.Padding = new Thickness(5, 5, 5, 5);
+            notify.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            notify.FontSize = 15;
+            notify.FontWeight = FontWeights.Bold;
+            notify.Margin = new Thickness(5, 5, 5, 5);
+            notify.HorizontalAlignment = HorizontalAlignment.Right;
+            notify.VerticalAlignment = VerticalAlignment.Top;
+            notify.Visibility = Visibility.Visible;
+
+            Grid.Children.Add(notify);
+
+            var vm = new CreateDataVm();
+            vm.CreateCommand.ExecuteCallback += (result) => 
+            {
+                if ((bool)result)
+                {
+                    notify.Text = "Success created";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+                }
+                else
+                {
+                    notify.Text = "Failed created";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+                }
+
+                DoubleAnimation notifyAnimation = new DoubleAnimation();
+                notifyAnimation.From = 0;
+                notifyAnimation.To = 190;
+                notifyAnimation.AutoReverse = true;
+                notifyAnimation.Duration = TimeSpan.FromSeconds(1);
+                notify.BeginAnimation(TextBlock.WidthProperty, notifyAnimation);
+            };
+
+            DataContext = vm;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

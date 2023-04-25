@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DataList">
-    <Grid>
+    <Grid x:Name="Grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="70px" />
@@ -16,8 +16,16 @@
         <ListBox Foreground="White" HorizontalContentAlignment="Stretch" Margin="15" ItemsSource="{Binding Data}" Background="{StaticResource LightDarkBrush}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="Padding" Value="9" />
+                    <Setter Property="FontSize" Value="15" />
                     <Setter Property="Background" Value="{StaticResource GreyBrush}" />
+                    <!--<Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>-->
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
