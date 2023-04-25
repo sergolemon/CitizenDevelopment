@@ -1,4 +1,5 @@
-﻿using CitizenDevelopment.WPF.Models;
+﻿using CitizenDevelopment.WPF.Extensions;
+using CitizenDevelopment.WPF.Models;
 using CitizenDevelopment.WPF.ViewModels.Data;
 using System;
 using System.Collections.Generic;
@@ -30,23 +31,20 @@ namespace CitizenDevelopment.WPF.Views.Data
             var vm = new UpdateDataVm(updatingData);
             vm.UpdateCommand.ExecuteCallback += (result) => 
             {
+                var notify = ((MainWindow)Window.GetWindow(this)).Notify;
+
                 if((bool)result)
                 {
-                    Notify.Text = "Success updated";
-                    Notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+                    notify.Text = "Success updated";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
                 }
                 else
                 {
-                    Notify.Text = "Failed updated";
-                    Notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+                    notify.Text = "Failed updated";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
                 }
 
-                DoubleAnimation notifyAnimation = new DoubleAnimation();
-                notifyAnimation.From = 0;
-                notifyAnimation.To = 190;
-                notifyAnimation.AutoReverse = true;
-                notifyAnimation.Duration = TimeSpan.FromSeconds(1.2);
-                Notify.BeginAnimation(TextBlock.WidthProperty, notifyAnimation);
+                notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
             };
 
             DataContext = vm;

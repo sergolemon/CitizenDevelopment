@@ -13,8 +13,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="70px" />
         </Grid.RowDefinitions>
-
-        <TextBlock Panel.ZIndex="2" x:Name="Notify" Width="0" Height="auto" Margin="5" Padding="5" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" />
         
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>

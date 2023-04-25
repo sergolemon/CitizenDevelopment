@@ -1,4 +1,6 @@
-﻿using CitizenDevelopment.WPF.ViewModels.Data;
+﻿using CitizenDevelopment.WPF.Abstract;
+using CitizenDevelopment.WPF.Extensions;
+using CitizenDevelopment.WPF.ViewModels.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,22 +31,20 @@ namespace CitizenDevelopment.WPF.Views.Data
             var vm = new CreateDataVm();
             vm.CreateCommand.ExecuteCallback += (result) => 
             {
+                var notify = ((MainWindow)Window.GetWindow(this)).Notify;
+
                 if ((bool)result)
                 {
-                    Notify.Text = "Success created";
-                    Notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+                    notify.Text = "Success created";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
                 }
                 else
                 {
-                    Notify.Text = "Failed created";
-                    Notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+                    notify.Text = "Failed created";
+                    notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
                 }
-                DoubleAnimation notifyAnimation = new DoubleAnimation();
-                notifyAnimation.From = 0;
-                notifyAnimation.To = 190;
-                notifyAnimation.AutoReverse = true;
-                notifyAnimation.Duration = TimeSpan.FromSeconds(1.2);
-                Notify.BeginAnimation(TextBlock.WidthProperty, notifyAnimation);
+
+                notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
             };
 
             DataContext = vm;

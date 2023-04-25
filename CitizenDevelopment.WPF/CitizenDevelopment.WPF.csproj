@@ -79,6 +79,7 @@
     <Compile Include="Commands\Data\CreateData.cs" />
     <Compile Include="Commands\Data\DeleteData.cs" />
     <Compile Include="Commands\Data\UpdateData.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="Repositories\DataRepository.cs" />
     <Compile Include="ViewModels\Data\CreateDataVm.cs" />
     <Compile Include="ViewModels\Data\DataListVm.cs" />
