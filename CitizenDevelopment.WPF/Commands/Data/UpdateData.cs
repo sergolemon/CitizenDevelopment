@@ -1,5 +1,7 @@
-﻿using CitizenDevelopment.WPF.Repositories;
-using CitizenDevelopment.WPF.ViewModels;
+﻿using CitizenDevelopment.WPF.Abstract;
+using CitizenDevelopment.WPF.Models;
+using CitizenDevelopment.WPF.Repositories;
+using CitizenDevelopment.WPF.ViewModels.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +11,21 @@ using System.Windows.Input;
 
 namespace CitizenDevelopment.WPF.Commands.Data
 {
-    internal class UpdateData : ICommand
+    internal class UpdateData : BaseCommand
     {
-        public event EventHandler CanExecuteChanged;
+        private readonly DataModel data;
 
-        private readonly UpdateDataVm _vm;
-
-        public UpdateData(UpdateDataVm vm)
+        public UpdateData(DataModel data)
         {
-            _vm = vm;
+            this.data = data;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public async void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             var repository = new DataRepository();
-            await repository.TryUpdateDataAsync(_vm.Data);
+            var result = await repository.TryUpdateDataAsync(data);
+
+            ExecuteCallback?.Invoke(result);
         }
     }
 }

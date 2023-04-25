@@ -1,5 +1,4 @@
-﻿using CitizenDevelopment.WPF.Models;
-using CitizenDevelopment.WPF.ViewModels;
+﻿using CitizenDevelopment.WPF.ViewModels.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,27 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CitizenDevelopment.WPF.Views
+namespace CitizenDevelopment.WPF.Views.Data
 {
     /// <summary>
-    /// Interaction logic for Update.xaml
+    /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class UpdateDataPage : Page
+    public partial class CreateDataPage : Page
     {
-        public UpdateDataPage(DataModel updatingData)
+        public CreateDataPage()
         {
             InitializeComponent();
-            DataContext = new UpdateDataVm(updatingData);
+            DataContext = new CreateDataVm();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

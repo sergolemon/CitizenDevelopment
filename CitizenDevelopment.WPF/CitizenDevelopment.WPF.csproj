@@ -75,27 +75,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstract\BaseCommand.cs" />
     <Compile Include="Commands\Data\CreateData.cs" />
     <Compile Include="Commands\Data\DeleteData.cs" />
     <Compile Include="Commands\Data\UpdateData.cs" />
     <Compile Include="Repositories\DataRepository.cs" />
-    <Compile Include="ViewModels\CreateDataVm.cs" />
-    <Compile Include="ViewModels\DataListVm.cs" />
-    <Compile Include="ViewModels\UpdateDataVm.cs" />
-    <Compile Include="Views\CreateDataPage.xaml.cs">
+    <Compile Include="ViewModels\Data\CreateDataVm.cs" />
+    <Compile Include="ViewModels\Data\DataListVm.cs" />
+    <Compile Include="ViewModels\Data\UpdateDataVm.cs" />
+    <Compile Include="Views\Data\CreateDataPage.xaml.cs">
       <DependentUpon>CreateDataPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DataListPage.xaml.cs">
+    <Compile Include="Views\Data\DataListPage.xaml.cs">
       <DependentUpon>DataListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UpdateDataPage.xaml.cs">
+    <Compile Include="Views\Data\UpdateDataPage.xaml.cs">
       <DependentUpon>UpdateDataPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Abstract\BaseModel.cs" />
+    <Compile Include="Abstract\BaseViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -112,15 +113,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateDataPage.xaml">
+    <Page Include="Views\Data\CreateDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DataListPage.xaml">
+    <Page Include="Views\Data\DataListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UpdateDataPage.xaml">
+    <Page Include="Views\Data\UpdateDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

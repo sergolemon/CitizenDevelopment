@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CitizenDevelopment.WPF.Abstract
 {
-    public abstract class BaseModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

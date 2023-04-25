@@ -1,5 +1,5 @@
 ﻿using CitizenDevelopment.WPF.Models;
-using CitizenDevelopment.WPF.ViewModels;
+using CitizenDevelopment.WPF.ViewModels.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CitizenDevelopment.WPF.Views
+namespace CitizenDevelopment.WPF.Views.Data
 {
     /// <summary>
     /// Interaction logic for DataList.xaml

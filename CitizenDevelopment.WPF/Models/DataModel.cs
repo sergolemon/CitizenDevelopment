@@ -8,30 +8,11 @@ using System.Threading.Tasks;
 
 namespace CitizenDevelopment.WPF.Models
 {
-    public class DataModel : BaseModel
+    public class DataModel
     {
-        int id;
-        string applicationName, userName, comment = string.Empty;
-
-        public int Id 
-        { 
-            get => id; 
-            set { id = value; OnPropertyChanged("Id"); } 
-        }
-        public string ApplicationName 
-        { 
-            get => applicationName; 
-            set { applicationName = value; OnPropertyChanged("ApplicationName"); } 
-        }
-        public string UserName 
-        { 
-            get => userName; 
-            set { userName = value; OnPropertyChanged("UserName"); } 
-        }
-        public string Comment 
-        { 
-            get => comment; 
-            set { comment = value; OnPropertyChanged("Comment"); } 
-        }
+        public int Id { get; set; }
+        public string UserName { get; set; } = string.Empty;
+        public string ApplicationName { get; set; } = string.Empty;
+        public string Comment { get; set; } = string.Empty;
     }
 }
