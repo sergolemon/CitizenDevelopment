@@ -43,20 +43,14 @@ namespace CitizenDevelopment.WPF.Views.Data
         {
             var parsedResult = (bool)commandResult;
 
-            var notify = ((MainWindow)Window.GetWindow(this)).Notify;
-
             if (parsedResult)
             {
-                notify.Text = "Success created";
-                notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+                this.ShowSuccessNotifyStandartAnimation("Success created.");
             }
             else
             {
-                notify.Text = "Failed created";
-                notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+                this.ShowFailureNotifyStandartAnimation("Failure created.");
             }
-
-            notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
         }
     }
 }

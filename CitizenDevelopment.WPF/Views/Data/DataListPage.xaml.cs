@@ -50,20 +50,14 @@ namespace CitizenDevelopment.WPF.Views.Data
         {
             var parsedResult = (ValueTuple<bool, DataModel>)commandResult;
 
-            var notify = ((MainWindow)Window.GetWindow(this)).Notify;
-
             if (parsedResult.Item1)
             {
-                notify.Text = "Success deleted";
-                notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+                this.ShowSuccessNotifyStandartAnimation("Success deleted.");
             }
             else
             {
-                notify.Text = "Failed deleted";
-                notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+                this.ShowFailureNotifyStandartAnimation("Failure deleted.");
             }
-
-            notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
         }
     }
 }

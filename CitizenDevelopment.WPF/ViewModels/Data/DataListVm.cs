@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace CitizenDevelopment.WPF.ViewModels.Data
 {
-    public class DataListVm : BaseModel
+    internal class DataListVm : BaseModel
     {
         private BaseCommand deleteCommand;
         public BaseCommand DeleteCommand 
@@ -44,9 +44,7 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
             get
             {
                 if (goUpdateCommand == null)
-                    goUpdateCommand = new RelayCommand(async (parameter) => {
-                        return parameter;
-                    });
+                    goUpdateCommand = new RelayCommand(async (parameter) => parameter);
 
                 return goUpdateCommand;
             }
