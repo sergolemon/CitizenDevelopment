@@ -1,4 +1,5 @@
 ﻿using CitizenDevelopment.WPF.Abstract;
+using CitizenDevelopment.WPF.Commands;
 using CitizenDevelopment.WPF.Commands.Data;
 using CitizenDevelopment.WPF.Models;
 using CitizenDevelopment.WPF.Repositories;
@@ -14,9 +15,42 @@ using System.Windows.Input;
 
 namespace CitizenDevelopment.WPF.ViewModels.Data
 {
-    public class DataListVm : BaseViewModel
+    public class DataListVm : BaseModel
     {
-        public BaseCommand DeleteCommand { get; }
+        private BaseCommand deleteCommand;
+        public BaseCommand DeleteCommand 
+        {
+            get
+            {
+                if (deleteCommand == null)
+                {
+                    deleteCommand = new DeleteDataCommand();
+                    deleteCommand.Executed += (commandResult) => 
+                    {
+                        var parsedResult = (ValueTuple<bool, DataModel>)commandResult;
+
+                        if(parsedResult.Item1)
+                            Data.Remove(parsedResult.Item2);
+                    };
+                }
+
+                return deleteCommand;
+            }
+        }
+
+        private BaseCommand goUpdateCommand;
+        public BaseCommand GoUpdateCommand
+        {
+            get
+            {
+                if (goUpdateCommand == null)
+                    goUpdateCommand = new RelayCommand(async (parameter) => {
+                        return parameter;
+                    });
+
+                return goUpdateCommand;
+            }
+        }
 
         public ObservableCollection<DataModel> Data { get; set; }
 
@@ -24,15 +58,6 @@ namespace CitizenDevelopment.WPF.ViewModels.Data
         {
             Data = new ObservableCollection<DataModel>(
                 new DataRepository().GetDataListAsync().Result);
-
-            DeleteCommand = new DeleteData();
-            DeleteCommand.ExecuteCallback += (result) =>
-            {
-                var parsedResult = (ValueTuple<int, bool>)result;
-
-                if(parsedResult.Item2)
-                    Data.Remove(Data.FirstOrDefault(x => x.Id == parsedResult.Item1));
-            };
         }
     }
 }

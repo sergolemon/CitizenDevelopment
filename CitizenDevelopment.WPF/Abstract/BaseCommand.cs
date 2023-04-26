@@ -9,12 +9,7 @@ namespace CitizenDevelopment.WPF.Abstract
 {
     public abstract class BaseCommand : ICommand
     {
-        private readonly Func<object, bool> _canExecute;
-
-        public BaseCommand(Func<object, bool> canExecute = null)
-        {
-            _canExecute = canExecute;
-        }
+        public event Action<object> Executed;
 
         public event EventHandler CanExecuteChanged
         {
@@ -22,20 +17,15 @@ namespace CitizenDevelopment.WPF.Abstract
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public event Action<object> ExecuteCallback;
+        public virtual bool CanExecute(object parameter) => true;
 
-        public virtual bool CanExecute(object parameter)
+        protected abstract Task<object> Handle(object parameter);
+
+        public async void Execute(object parameter)
         {
-            return _canExecute == null || _canExecute(parameter);
+            var result = await Handle(parameter);
+
+            Executed?.Invoke(result);
         }
-
-        public async void Execute(object parameter) 
-        {
-            var commandResult = await ExecuteCommandAsync(parameter);
-
-            ExecuteCallback?.Invoke(commandResult);
-        }
-
-        protected abstract Task<object> ExecuteCommandAsync(object parameter);
     }
 }

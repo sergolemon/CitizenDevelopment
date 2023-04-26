@@ -29,11 +29,24 @@ namespace CitizenDevelopment.WPF.Views.Data
             InitializeComponent();
 
             var vm = new UpdateDataVm(updatingData);
-            vm.UpdateCommand.ExecuteCallback += (result) => 
+            vm.UpdateCommand.Executed += OnUpdateCommand;
+
+            DataContext = vm;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void OnUpdateCommand(object commandResult)
+        {
             {
+                var parsedResult = (bool)commandResult;
+
                 var notify = ((MainWindow)Window.GetWindow(this)).Notify;
 
-                if((bool)result)
+                if (parsedResult)
                 {
                     notify.Text = "Success updated";
                     notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
@@ -45,14 +58,7 @@ namespace CitizenDevelopment.WPF.Views.Data
                 }
 
                 notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
-            };
-
-            DataContext = vm;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
+            }
         }
     }
 }

@@ -29,23 +29,7 @@ namespace CitizenDevelopment.WPF.Views.Data
             InitializeComponent();
 
             var vm = new CreateDataVm();
-            vm.CreateCommand.ExecuteCallback += (result) => 
-            {
-                var notify = ((MainWindow)Window.GetWindow(this)).Notify;
-
-                if ((bool)result)
-                {
-                    notify.Text = "Success created";
-                    notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
-                }
-                else
-                {
-                    notify.Text = "Failed created";
-                    notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
-                }
-
-                notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
-            };
+            vm.CreateCommand.Executed += OnCreateCommand;
 
             DataContext = vm;
         }
@@ -53,6 +37,26 @@ namespace CitizenDevelopment.WPF.Views.Data
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void OnCreateCommand(object commandResult)
+        {
+            var parsedResult = (bool)commandResult;
+
+            var notify = ((MainWindow)Window.GetWindow(this)).Notify;
+
+            if (parsedResult)
+            {
+                notify.Text = "Success created";
+                notify.Background = new SolidColorBrush(Color.FromRgb(90, 230, 90));
+            }
+            else
+            {
+                notify.Text = "Failed created";
+                notify.Background = new SolidColorBrush(Color.FromRgb(250, 90, 90));
+            }
+
+            notify.BeginAnimation(TextBlock.WidthProperty, this.GetNotifyStandartAnimation());
         }
     }
 }

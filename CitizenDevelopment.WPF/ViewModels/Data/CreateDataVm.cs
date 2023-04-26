@@ -1,4 +1,5 @@
 ﻿using CitizenDevelopment.WPF.Abstract;
+using CitizenDevelopment.WPF.Commands;
 using CitizenDevelopment.WPF.Commands.Data;
 using CitizenDevelopment.WPF.Models;
 using CitizenDevelopment.WPF.Repositories;
@@ -14,43 +15,38 @@ using System.Windows.Media.Animation;
 
 namespace CitizenDevelopment.WPF.ViewModels.Data
 {
-    internal class CreateDataVm : BaseViewModel
+    internal class CreateDataVm : BaseModel
     {
-        public BaseCommand CreateCommand { get; }
+        private BaseCommand createCommand;
+        public BaseCommand CreateCommand
+        {
+            get
+            {
+                if (createCommand == null)
+                {
+                    createCommand = new CreateDataCommand();
+                    createCommand.Executed += (commandResult) => 
+                    {
+                        if ((bool)commandResult)
+                            Data = new DataModel();
+                    };
+                }
 
-        private DataModel data;
+                return createCommand;
+            }
+        }
 
         public CreateDataVm()
         {
-            data = new DataModel();
-            CreateCommand = new CreateData(data);
-            CreateCommand.ExecuteCallback += (result) => 
-            {
-                if ((bool)result) 
-                { 
-                    UserName = string.Empty;
-                    ApplicationName = string.Empty;
-                    Comment = string.Empty;
-                }
-            };
+            Data = new DataModel();
         }
 
-        public string UserName 
-        {
-            get => data.UserName;
-            set { data.UserName = value; OnPropertyChanged("UserName"); }
-        }
+        private DataModel data;
 
-        public string ApplicationName
+        public DataModel Data 
         {
-            get => data.ApplicationName;
-            set { data.ApplicationName = value; OnPropertyChanged("ApplicationName"); }
-        }
-
-        public string Comment
-        {
-            get => data.Comment;
-            set { data.Comment = value; OnPropertyChanged("Comment"); }
+            get => data;
+            set { data = value; OnPropertyChanged(nameof(Data)); }
         }
     }
 }

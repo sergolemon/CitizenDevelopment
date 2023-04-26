@@ -28,7 +28,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Margin="190 0 0 0" Foreground="White" FontSize="18" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0">User name</Label>
-                <TextBox Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Path=Data.UserName, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Margin="190 0 0 0" Foreground="White" FontSize="18" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0">Application name</Label>
-                <TextBox Text="{Binding Path=ApplicationName, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Path=Data.ApplicationName, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -47,11 +47,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Margin="190 0 0 0" Foreground="White" FontSize="18" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0">Comment</Label>
-                <TextBox Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Path=Data.Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 0 150 0" VerticalAlignment="Center" FontSize="18" VerticalContentAlignment="Center" Padding="3" Width="220" Grid.Column="1"></TextBox>
             </Grid>
         </Grid>
 
         <Button Content="Go to back" Background="{StaticResource BlueBrush}" HorizontalAlignment="Left" Foreground="White" Style="{StaticResource BottomBaseButton}" Click="Button_Click_1" />
-        <Button Command="{Binding CreateCommand}" Foreground="White" Background="{StaticResource OrangeBrush}" Style="{StaticResource BottomBaseButton}" HorizontalAlignment="Right" Content="Save new record" />
+        <Button Command="{Binding CreateCommand}" CommandParameter="{Binding Data}" Foreground="White" Background="{StaticResource OrangeBrush}" Style="{StaticResource BottomBaseButton}" HorizontalAlignment="Right" Content="Save new record" />
     </Grid>
 </Page>

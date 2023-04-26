@@ -76,9 +76,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Abstract\BaseCommand.cs" />
-    <Compile Include="Commands\Data\CreateData.cs" />
-    <Compile Include="Commands\Data\DeleteData.cs" />
-    <Compile Include="Commands\Data\UpdateData.cs" />
+    <Compile Include="Commands\Data\CreateDataCommand.cs" />
+    <Compile Include="Commands\Data\DeleteDataCommand.cs" />
+    <Compile Include="Commands\Data\UpdateDataCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="Repositories\DataRepository.cs" />
     <Compile Include="ViewModels\Data\CreateDataVm.cs" />
@@ -97,7 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Abstract\BaseViewModel.cs" />
+    <Compile Include="Abstract\BaseModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

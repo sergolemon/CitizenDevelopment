@@ -1,4 +1,5 @@
 ﻿using CitizenDevelopment.WPF.Abstract;
+using CitizenDevelopment.WPF.Commands;
 using CitizenDevelopment.WPF.Commands.Data;
 using CitizenDevelopment.WPF.Models;
 using CitizenDevelopment.WPF.Repositories;
@@ -11,34 +12,31 @@ using System.Windows.Input;
 
 namespace CitizenDevelopment.WPF.ViewModels.Data
 {
-    internal class UpdateDataVm : BaseViewModel
+    internal class UpdateDataVm : BaseModel
     {
-        public BaseCommand UpdateCommand { get; }
+        private BaseCommand updateCommand;
+        public BaseCommand UpdateCommand
+        {
+            get
+            {
+                if(updateCommand == null)
+                    updateCommand = new UpdateDataCommand();
 
-        private DataModel data;
+                return updateCommand;
+            }
+        }
 
         public UpdateDataVm(DataModel updatingData)
         {
-            data = updatingData;
-            UpdateCommand = new UpdateData(data);
+            Data = updatingData;
         }
 
-        public string UserName
-        {
-            get => data.UserName;
-            set { data.UserName = value; OnPropertyChanged("UserName"); }
-        }
+        private DataModel data;
 
-        public string ApplicationName
+        public DataModel Data
         {
-            get => data.ApplicationName;
-            set { data.ApplicationName = value; OnPropertyChanged("ApplicationName"); }
-        }
-
-        public string Comment
-        {
-            get => data.Comment;
-            set { data.Comment = value; OnPropertyChanged("Comment"); }
+            get => data;
+            set { data = value; OnPropertyChanged(nameof(Data)); }
         }
     }
 }
